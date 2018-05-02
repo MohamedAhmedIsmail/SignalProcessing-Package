@@ -14,8 +14,4 @@ class GenerateRandomNumbers:
         myCoordinateList=[]
         for i in xCoordinate:
             myCoordinateList.append((xCoordinate[i],yCoordinate[i]))
-        return myCoordinateList
-
-
-    
-    
+        return myCoordinateList  

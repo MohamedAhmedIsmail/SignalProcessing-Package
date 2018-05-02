@@ -3,17 +3,17 @@ import numpy as np
 import math
 class SignalGeneration:
 
-    def Signal(self,SizeOfFile=None,A=None,F=None,Fs=None,Theta=None,SinORCos=None):
+    def Signal(self,SizeOfFile=None,A=None,F=None,Fs=None,Theta=None,SinORCos2=None):
         NewSignal=[]
         for i in range(SizeOfFile):
-            if SinORCos == SinOrCos.sin:
+            if SinORCos2 == SinOrCos.sin:
                 NewSignal.append(A*math.sin((2*math.pi*(F/Fs)*i)+Theta))
-            elif SinORCos == SinOrCos.cos:
+            elif SinORCos2 == SinOrCos.cos:
                 NewSignal.append(A*math.cos((2*math.pi*(F/Fs)*i)+Theta))
         return NewSignal
     
     def NormalizeSignal(self,Signal=None,Type=None):
-        yValues=[y[1] for y in Signal]
+        yValues=[float(y[1]) for y in Signal]
         minimum=np.min(yValues)
         maximum=np.max(yValues)
         NormalizedSignalList=[]
@@ -26,7 +26,7 @@ class SignalGeneration:
     
     def MovingAverage(self,Kernal=None,Signal=None):
         filterSize=(Kernal-1)/2
-        yValues=[y[1] for y in Signal]
+        yValues=[float(y[1]) for y in Signal]
         AveragedSignal=[]
         for i in range(int(filterSize)):
             yValues.insert(0,0)
@@ -40,7 +40,7 @@ class SignalGeneration:
         return AveragedSignal
     
     def SignalDerivative(self,Signal=None):
-        yValues=[y[1] for y in Signal]
+        yValues=[float(y[1]) for y in Signal]
         derivativeList=[]
         for i in range(len(yValues)):
             if i==0:
@@ -50,7 +50,7 @@ class SignalGeneration:
         return derivativeList
     
     def RemovingDcComponents(self,Signal=None):
-        yValues=[y[1] for y in Signal]
+        yValues=[float(y[1]) for y in Signal]
         Average=sum(yValues)/float(len(yValues))
         DC=[]
         for i in range(len(yValues)):

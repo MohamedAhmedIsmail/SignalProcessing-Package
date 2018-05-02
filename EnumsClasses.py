@@ -3,7 +3,7 @@ class DiscreteOrContinuous(Enum):
     discrete=1
     continuous=0
     
-class Operations(Enum):
+class CheckOperations(Enum):
     Add=0
     Subtract=1
     Multiply=2
@@ -33,5 +33,10 @@ class DelayAdvance(Enum):
 class NormalizedOrNonNormalized(Enum):
     Normalized=0
     NonNormalized=1
-    
-    
+
+class LowOrHighPassFilter(Enum):
+    Low=0
+    High=1
+class BandPassOrStop(Enum):
+    Pass=0
+    stop=1 

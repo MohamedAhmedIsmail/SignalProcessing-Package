@@ -1,16 +1,18 @@
 class HelperFunctions:
     def shift(self,mylst=None,indx=None):
-        return mylst[indx:]+mylst[:indx]
-    
+        return mylst[indx:]+mylst[:indx]    
     def NormalizationAuto(self,MySignal=None):
         Res=0.0
         Res1=0.0
         Res2=0.0
-        for i in range(len(MySignal)):
-            Res1+=MySignal[i]**2
-            Res2+=MySignal[i]**2
+        mySignal2=[]
+        for i in range(len(MySignal[0])):
+            mySignal2.append(float(MySignal[0][i][1]))
+        for i in range(len(mySignal2)):
+            Res1+=mySignal2[i]**2
+            Res2+=mySignal2[i]**2
         Res=(Res1*Res2)**0.5
-        Res=Res/len(MySignal)
+        Res=Res/len(mySignal2)
         return Res
     
     def NormalizationCross(self,FirstSignal=None,SecondSignal=None):

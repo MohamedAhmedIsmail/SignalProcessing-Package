@@ -23,6 +23,3 @@ class sin:
         self.line, = self.ax.plot(self.x,np.sin(self.x))
         ani = animation.FuncAnimation(self.fig, self.animate, np.arange(1, 200), interval=20, blit=False)
         self.root.mainloop()
-    
-        
-        

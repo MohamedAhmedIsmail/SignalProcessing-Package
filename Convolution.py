@@ -5,6 +5,8 @@ class ConvolutionSignal:
     def DirectConvolutionSignal(self,FirstSignal=None,SecondSignal=None):
         N1=len(FirstSignal)
         N2=len(SecondSignal)
+        FirstSignal=[x[1] for x in FirstSignal]
+        SecondSignal=[x[1] for x in SecondSignal]
         convlutedSignal=[]
         for n in range(N1+N2 - 1):
             summation=0
@@ -16,14 +18,20 @@ class ConvolutionSignal:
                 elif idx >= N2:
                     continue
                 else:
-                    summation+=FirstSignal[k]*SecondSignal[idx]
+                    summation+=float(FirstSignal[k])*float(SecondSignal[idx])
             convlutedSignal.append(summation)
         return convlutedSignal
     
     def FastConvolutionSignal(self,FirstSignal=None,SecondSignal=None):
         myObj=FastFourierTransform()
+        FirstSignal=[x[1] for x in FirstSignal]
+        SecondSignal=[x[1] for x in SecondSignal]
         newsize=len(FirstSignal)+len(SecondSignal)-1
         handlesize=1<<(newsize - 1).bit_length()
+        for i in range(len(FirstSignal)):
+            FirstSignal[i]=float(FirstSignal[i])
+        for i in range(len(SecondSignal)):
+            SecondSignal[i]=float(SecondSignal[i])
         for i in range(handlesize-len(FirstSignal)):
             FirstSignal.append(0)
         for i in range(handlesize-len(SecondSignal)):

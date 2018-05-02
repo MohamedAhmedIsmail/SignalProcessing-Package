@@ -22,13 +22,14 @@ class DftFft:
         myNewTuple=[]
         for a in myTuple:
             for i in range(len(a)):
-                myNewTuple.append((float(a[i][1]),float(a[i][2])))
+                myNewTuple.append((float(a[i][0]),float(a[i][1])))
         myComplexList=[]
         for i in range(len(myNewTuple)):
              x=myNewTuple[i][0]*np.cos(myNewTuple[i][1])
              y=myNewTuple[i][0]*np.sin(myNewTuple[i][1])
              res=x+y*1j
              myComplexList.append(res)
+        print(myComplexList)
         return myComplexList
     
     def ReturnNumbersOfSignal(self,Signal=None):

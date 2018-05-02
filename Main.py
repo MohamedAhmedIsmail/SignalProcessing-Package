@@ -5,4 +5,3 @@ if __name__ =="__main__":
     Manager=DrawingHelperFunctions(gui)
     Manager.Bind()
     gui.Run()
-    

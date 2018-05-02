@@ -32,6 +32,8 @@ class CorrelationSignal:
     def DirectCrossCorrelation(self,FirstSignal=None,SecondSignal=None,NormalizeOrNon=None):
         myObj=HelperFunctions()
         myObj2=HandleCorrelationSignal()
+        FirstSignal=[int(x[1]) for x in FirstSignal]
+        SecondSignal=[int(x[1]) for x in SecondSignal]
         myNewSignal1,myNewSignal2=myObj.makeTwoSignalsEqualInLength(FirstSignal,SecondSignal)
         myNewSignal=myObj2.HandleDirectCrossCorrelation(myNewSignal1,myNewSignal2)
         if NormalizeOrNon==NormalizedOrNonNormalized.NonNormalized:
@@ -46,13 +48,13 @@ class CorrelationSignal:
     def FastCrossCorrelation(self,FirstSignal=None,SecondSignal=None,NormalizeOrNon=None):
         myObj=HelperFunctions()
         myObj2=HandleCorrelationSignal()
+        FirstSignal=[int(x[1]) for x in FirstSignal]
+        SecondSignal=[int(x[1]) for x in SecondSignal]
         fastCorr=myObj2.HandleFastCrossCorrelation(FirstSignal,SecondSignal)
-        print(fastCorr)
         if NormalizeOrNon==NormalizedOrNonNormalized.NonNormalized:
             return fastCorr
         elif NormalizeOrNon==NormalizedOrNonNormalized.Normalized:
             Normalized=myObj.NormalizationCross(FirstSignal,SecondSignal)
-            print(Normalized)
             newSignal=[]
             for i in range(len(FirstSignal)):
                 newSignal.append((fastCorr[i]/Normalized))

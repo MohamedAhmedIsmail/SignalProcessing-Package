@@ -3,21 +3,26 @@ from CorrelationHelperFunctions import HelperFunctions
 class HandleCorrelationSignal:
     def HandleDirectAutoCorrelation(self,mySignal=None):
         mylst=[]
+        mySignal2=[]
         myObj=HelperFunctions()
-        for i in range(len(mySignal)):
-            
-            newSignal=myObj.shift(mySignal,i)
+        for i in range(len(mySignal[0])):
+            mySignal2.append(float(mySignal[0][i][1]))
+        for i in range(len(mySignal2)):
+            newSignal=myObj.shift(mySignal2,i)
             Res=0
-            for j in range(len(mySignal)):
-                Res+=mySignal[j]*newSignal[j]
-            mylst.append(Res/len(mySignal))
+            for j in range(len(mySignal2)):
+                Res+=mySignal2[j]*newSignal[j]
+            mylst.append(Res/len(mySignal2))
         return mylst
     def HandleDirectFastAutoCorrelation(self,mySignal=None):
         myObj=FastFourierTransform()
-        FFTSignal=myObj.fft(mySignal)
+        mySignal2=[]
+        for i in range(len(mySignal[0])):
+            mySignal2.append(float(mySignal[0][i][1]))
+        FFTSignal=myObj.fft(mySignal2)
         ConjugateSignal=FFTSignal.conjugate()
         multiplyingSignal=FFTSignal*ConjugateSignal
-        myResultSignal=myObj.ifft(multiplyingSignal)/len(mySignal)
+        myResultSignal=myObj.ifft(multiplyingSignal)/len(mySignal2)
         return myResultSignal
     def HandleDirectCrossCorrelation(self,myFirstSignal=None,mySecondSignal=None):
         myObj=HelperFunctions()

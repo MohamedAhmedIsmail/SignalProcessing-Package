@@ -6,6 +6,8 @@ class Quantization:
     @staticmethod
     def calculateQuantization(SignalArray=None,numberOfLevelsOrBits=None, bitsOrlevels=None):
         yValues=[y[1] for y in SignalArray]
+        for i in range(len(yValues)):
+            yValues[i]=float(yValues[i])
         maximumNumber=np.max(yValues)
         minimumNumber=np.min(yValues)
         numberOfLevels=None
